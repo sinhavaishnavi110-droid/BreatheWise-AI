@@ -2,6 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename =  fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -16,14 +21,16 @@ app.use((req, res, next) => {
 
 // CORS configuration
 app.use(cors({
-  origin: [
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "http://10.201.141.200:5500"
-  ]
+  origin: "*"
 }));
 
 app.use(express.json({ limit: "10kb" }));
+
+app.use(express.static(__dirname));
+
+app.get("/",(req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // Gemini AI configuration
 const apiKey = process.env.GEMINI_API_KEY;
