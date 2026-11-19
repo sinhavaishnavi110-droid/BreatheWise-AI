@@ -26,7 +26,12 @@ app.use(cors({
 
 app.use(express.json({ limit: "10kb" }));
 
+// Serve static frontend files from the public folder
+app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 // Gemini AI configuration
 const apiKey = process.env.GEMINI_API_KEY;
 const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
