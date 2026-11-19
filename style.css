@@ -1,0 +1,303 @@
+ :root {
+  --ink:#1d3029; --muted:#788780; --green:#287653; --green-dark:#174e39;
+  --mint:#e8f4ed; --line:#e8eee9; --surface:#ffffff; --bg:#f6f8f5;
+  --shadow:0 10px 35px rgba(31,67,48,.055);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.app-shell{min-height:100vh}
+.sidebar{width:245px;background:#fff;border-right:1px solid var(--line);position:fixed;inset:0 auto 0 0;padding:30px 20px;display:flex;flex-direction:column;z-index:10}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-family:Manrope,sans-serif;font-size:20px;font-weight:800;line-height:1}
+.brand-mark{width:37px;height:37px;border-radius:13px;background:var(--green);color:white;display:grid;place-items:center;font-size:23px}
+.brand-light{color:var(--green);font-weight:600}
+.brand small{display:block;color:#9aa79f;font:700 8px "DM Sans";letter-spacing:1.55px;margin-top:6px}
+.nav-label,.eyebrow,.card-label{font-size:10px;font-weight:700;letter-spacing:1.45px;color:#91a098}
+.nav-label{margin:53px 0 15px 10px}
+.main-nav{display:grid;gap:7px}
+.nav-link{display:flex;align-items:center;gap:13px;padding:12px 13px;border-radius:10px;color:#78877f;text-decoration:none;font-size:13px;font-weight:600}
+.nav-link span{font-size:18px;width:20px;text-align:center}
+.nav-link:hover,.nav-link.active{background:#edf5ef;color:var(--green)}
+.sidebar-note{margin-top:auto;background:#f0f6f0;border-radius:15px;padding:17px}
+.note-icon{font-size:21px}.sidebar-note strong{display:block;font-size:13px;margin:9px 0 5px}.sidebar-note p{font-size:11px;line-height:1.6;color:#718078;margin:0}
+.sidebar-bottom{font-size:10px;color:#8a978f;margin:22px 4px 0;display:flex;align-items:center;gap:7px}
+.status-dot{width:7px;height:7px;background:#55a879;border-radius:50%;display:inline-block}
+.main-content{margin-left:245px;padding:0 48px;max-width:1600px}
+.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.breadcrumb{font-size:12px;color:#87948c}.breadcrumb span{padding:0 9px;color:#c1cbc4}.breadcrumb strong{color:var(--ink)}
+.topbar-right{display:flex;align-items:center;gap:20px}.date-label{font-size:11px;color:#8c9991}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#e5f1e8;color:var(--green);font-weight:700;font-size:11px}
+.menu-button{display:none;border:0;background:transparent;font-size:22px;color:var(--ink)}
+.welcome-row{display:flex;justify-content:space-between;align-items:center;padding:42px 0 30px;min-height:225px}
+.welcome-row .eyebrow{color:var(--green);margin:0 0 12px}
+h1,h2,h3,p{margin-top:0}
+h1{font:800 clamp(34px,4vw,48px)/1.12 Manrope,sans-serif;letter-spacing:-2px;margin-bottom:12px}
+h1 span{color:var(--green)}
+.welcome-copy{max-width:520px;color:#77857d;font-size:13px;line-height:1.7;margin:0}
+.welcome-art{width:245px;height:150px;border-radius:22px;background:linear-gradient(135deg,#e5f1e7,#f1f4dc);position:relative;overflow:hidden;margin-right:35px}
+.sun{position:absolute;width:54px;height:54px;border-radius:50%;background:#f4d98b;right:42px;top:22px}
+.hill{position:absolute;bottom:-65px;width:240px;height:145px;border-radius:50%}
+.hill-back{background:#bdd8c2;left:-55px}.hill-front{background:#6eaa81;right:-80px;bottom:-85px}
+.plant{position:absolute;bottom:12px;left:45%;font-size:58px;color:#286d4b;transform:rotate(-20deg)}
+.location-bar{display:flex;align-items:center;gap:13px;padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}
+.location-icon{font-size:22px;color:var(--green)}
+.location-bar label{font-size:9px;letter-spacing:1px;color:#8d9a92;font-weight:700}
+.location-bar input{flex:1;min-width:60px;border:0;outline:0;color:var(--ink);font-weight:600;font-size:13px}
+.primary-button{border:0;background:var(--green);color:#fff;border-radius:8px;padding:12px 17px;font-size:11px;font-weight:700}
+.primary-button:hover{background:var(--green-dark)}
+.primary-button span{padding-left:9px}
+.demo-notice{font-size:10px;color:#9a8a63;margin:9px 2px 29px}
+.section-heading{display:flex;justify-content:space-between;align-items:end;margin:0 0 14px}
+.section-heading .eyebrow{margin:0 0 5px;color:var(--green)}
+h2{font:700 19px Manrope,sans-serif;letter-spacing:-.45px;margin:0}
+.updated-pill,.soft-label{font-size:10px;color:#7c8b82;background:#fff;border:1px solid var(--line);padding:7px 10px;border-radius:20px}
+.updated-pill .status-dot{margin-right:5px}
+.dashboard-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:15px}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:21px;box-shadow:var(--shadow)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.card-label{margin:0 0 7px}
+.card h3{font:700 15px Manrope;margin:0}
+.icon-bubble{width:34px;height:34px;border-radius:11px;background:#f1eefb;color:#8170b3;display:grid;place-items:center;font-size:19px}
+.icon-bubble.green{background:#e9f4ed;color:var(--green)}
+.aqi-content{display:flex;align-items:center;gap:19px;margin:18px 0 17px}
+.aqi-number{font:800 56px/.95 Manrope;letter-spacing:-3px;color:#d38b43}
+.aqi-status{display:inline-block;background:#fff0df;color:#a96c27;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:700}
+.aqi-description{font-size:11px;color:#849188;margin:8px 0 0}
+.meter{height:7px;border-radius:20px;background:linear-gradient(90deg,#5cae7b 0 25%,#e6c85f 25% 50%,#e59b54 50% 75%,#d76c66 75%);position:relative}
+.meter span{position:absolute;left:52%;top:-4px;width:4px;height:15px;background:#20392d;border-radius:5px}
+.meter-labels{display:flex;justify-content:space-between;font-size:8px;color:#9aa59e;margin-top:8px}
+.pollutant-list{margin-top:16px}
+.pollutant-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f3f0}
+.pollutant-row:last-child{border-bottom:0}
+.pollutant-row strong{display:block;font-size:12px}.pollutant-row small{display:block;color:#98a39c;font-size:9px;margin-top:3px}
+.pollutant-row b{font-size:12px;color:#46584e}
+.tiny-note{font-size:9px;color:#a0aaa3;margin:6px 0 0}
+.compact-heading{margin-top:31px}.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.tip-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px;display:flex;gap:12px;position:relative;min-height:126px}
+.tip-icon{flex:0 0 34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px}
+.lavender{background:#f0edfa;color:#8372b5}.peach{background:#fff0e5;color:#bd8352}.mint{background:#e8f4ed;color:#4d956c}
+.tip-card h3{font:700 12px Manrope;margin:1px 0 7px}.tip-card p{font-size:10px;line-height:1.6;color:#829087;margin:0;max-width:210px}
+.tip-number{position:absolute;right:13px;bottom:10px;font-size:9px;color:#c4cec7}
+.bottom-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin-top:29px}
+.assistant-heading{display:flex;align-items:center;gap:11px}.assistant-symbol{width:36px;height:36px;border-radius:11px;background:#eaf4ed;color:var(--green);display:grid;place-items:center;font-size:22px}
+.assistant-heading .card-label{margin-bottom:4px}.assistant-heading h2{font-size:17px}
+.beta-tag{margin-left:auto;font-size:8px;letter-spacing:.7px;color:#8b7baf;background:#f2eff9;padding:6px 8px;border-radius:20px}
+.assistant-intro,.tracker-copy{font-size:10px;line-height:1.6;color:#87948c;margin:15px 0}
+.chat-window{height:125px;overflow:auto;background:#f7f9f7;border-radius:10px;padding:11px}
+.chat-message{max-width:90%;font-size:10px;line-height:1.6;padding:9px 11px;border-radius:10px;margin-bottom:8px}
+.bot-message{background:#e9f3ec;color:#385c47;border-bottom-left-radius:3px}
+.user-message{background:#286f50;color:#fff;margin-left:auto;border-bottom-right-radius:3px}
+.chat-form{display:flex;gap:8px;margin-top:10px}
+.chat-form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:11px;font-size:10px;outline-color:#9ac5a7}
+.chat-form button{width:38px;border:0;border-radius:8px;background:var(--green);color:#fff;font-size:18px}
+.quick-prompts{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.prompt-chip{border:1px solid var(--line);background:#fff;color:#78867e;border-radius:20px;padding:6px 9px;font-size:9px}
+.prompt-chip:hover{border-color:#a9cbb4;color:var(--green)}
+.tracker-card h2{font-size:17px}.tracker-copy{margin:12px 0}
+.habit-list{display:grid;gap:11px}
+.habit{display:flex;align-items:center;gap:9px;font-size:10px;color:#596a60;cursor:pointer}
+.habit input{position:absolute;opacity:0}
+.custom-check{width:16px;height:16px;border:1px solid #ccd8cf;border-radius:5px;display:inline-grid;place-items:center;flex:0 0 16px}
+.habit input:checked+.custom-check{background:var(--green);border-color:var(--green)}
+.habit input:checked+.custom-check:after{content:"✓";color:white;font-size:11px}
+.habit input:focus-visible+.custom-check{outline:2px solid #4e9a70;outline-offset:2px}
+.score-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);margin-top:16px;padding-top:13px}
+.score-row>div:first-child>small{display:block;color:#9aa69e;font-size:8px;letter-spacing:.8px;margin-bottom:5px}
+.score-row strong{font:700 19px Manrope}.score-row strong small{font:400 9px "DM Sans";color:#9aa69e}
+.score-ring{width:43px;height:43px;border-radius:50%;background:conic-gradient(var(--green) 0deg,#e9efea 0deg);display:grid;place-items:center;position:relative}
+.score-ring:before{content:"";position:absolute;inset:5px;background:white;border-radius:50%}
+.score-ring span{position:relative;font-size:9px;font-weight:700}
+.footer{display:flex;justify-content:space-between;color:#a1aca5;font-size:9px;padding:27px 0 20px}
+.footer span:first-child{font-weight:700;color:#648572}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1050px){.main-content{padding:0 28px}.sidebar{width:220px}.main-content{margin-left:220px}.welcome-art{margin-right:0}}
+@media(max-width:780px){.sidebar{transform:translateX(-100%);transition:transform .25s;width:245px;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.main-content{margin-left:0;padding:0 20px}.menu-button{display:block}.topbar{gap:15px}.breadcrumb{margin-right:auto}.date-label{display:none}.welcome-row{padding-top:32px}.welcome-art{width:160px;height:120px}.dashboard-grid,.bottom-grid{grid-template-columns:1fr}.tips-grid{grid-template-columns:1fr}.tip-card{min-height:95px}.welcome-copy{max-width:430px}}
+@media(max-width:480px){.main-content{padding:0 14px}.welcome-art{display:none}h1{font-size:39px}.location-bar{flex-wrap:wrap}.location-bar label{font-size:8px}.location-bar input{width:calc(100% - 150px)}.primary-button{width:100%}.section-heading{align-items:start;gap:8px}.updated-pill,.soft-label{font-size:8px;white-space:nowrap}.card{padding:16px}.footer{gap:12px;flex-direction:column}}
+ 
+/* CITY COMPARISON DESIGN */
+
+.comparison-controls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.comparison-controls select {
+  flex: 1;
+  min-width: 150px;
+  padding: 13px;
+  border: 1px solid #dce7df;
+  border-radius: 10px;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  color: #263c30;
+  cursor: pointer;
+}
+
+.comparison-controls select:focus {
+  outline: 2px solid #287653;
+}
+
+#comparisonResult {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+#comparisonResult .pollutant-row {
+  background: #f3f8f4;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #e0ebe2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#comparisonResult .tiny-note {
+  grid-column: 1 / -1;
+  padding: 12px;
+  background: #f8faf8;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  #comparisonResult {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-controls {
+    flex-direction: column;
+  }
+
+  .comparison-controls select,
+  .comparison-controls button {
+    width: 100%;
+  }
+}
+
+/* AQI COMPARISON BARS */
+
+.aqi-bar {
+  width: 100%;
+  height: 12px;
+  background: #e5eee7;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.aqi-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #55bd80, #e9a441, #e65c55);
+  border-radius: 20px;
+  transition: width 0.6s ease;
+}
+
+#comparisonResult .pollutant-row {
+  padding: 20px;
+  background: #f3f8f4;
+  border-radius: 14px;
+  border: 1px solid #e0ebe2;
+}
+
+#comparisonResult .pollutant-row strong {
+  font-size: 18px;
+}
+
+#comparisonResult .pollutant-row b {
+  font-size: 14px;
+  color: #52665a;
+}
+
+
+/* 7-DAY AQI FORECAST */
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 22px;
+}
+
+.forecast-card {
+  background: #f3f8f4;
+  border: 1px solid #e0ebe2;
+  border-radius: 14px;
+  padding: 20px 12px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-5px);
+}
+
+.forecast-card h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.forecast-aqi {
+  font-size: 30px;
+  font-weight: 700;
+  color: #287653;
+  margin-bottom: 10px;
+}
+
+.forecast-card p {
+  font-size: 12px;
+  color: #52665a;
+}
+
+@media (max-width: 600px) {
+  .forecast-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* POLLUTION HEALTH & SAFETY GUIDE */
+
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.health-card {
+  background: #f3f8f4;
+  border: 1px solid #e0ebe2;
+  border-radius: 14px;
+  padding: 22px;
+  transition: transform 0.3s ease;
+}
+
+.health-card:hover {
+  transform: translateY(-5px);
+}
+
+.health-card span {
+  font-size: 30px;
+}
+
+.health-card h3 {
+  margin: 12px 0;
+  color: #287653;
+}
+
+.health-card p {
+  color: #52665a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .health-grid {
+    grid-template-columns: 1fr;
+  }
+}

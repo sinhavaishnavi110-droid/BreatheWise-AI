@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="BreatheWise AI helps people understand air quality and make informed environmental decisions.">
+
+  <title>BreatheWise AI | Air Quality Assistant</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <a class="brand" href="#overview">
+      <span class="brand-mark">✦</span>
+      <span>
+        Breathe<span class="brand-light">Wise</span>
+        <small>YOUR AIR, YOUR GUIDE</small>
+      </span>
+    </a>
+
+    <p class="nav-label">WORKSPACE</p>
+
+    <nav class="main-nav" aria-label="Main navigation">
+
+      <a class="nav-link active" href="#overview">
+        <span>▦</span> Overview
+      </a>
+
+      <a class="nav-link" href="#air-quality">
+        <span>◉</span> Air quality
+      </a>
+
+      <a class="nav-link" href="#forecast">
+        <span>📈</span> AQI Forecast
+      </a>
+
+      <a class="nav-link" href="#city-comparison">
+        <span>⇄</span> City comparison
+      </a>
+
+      <a class="nav-link" href="#health-guide">
+        <span>🌿</span> Health Guide
+      </a>
+
+      <a class="nav-link" href="#data-sources">
+        <span>ⓘ</span> Data Sources
+      </a>
+
+      <a class="nav-link" href="#daily-tips">
+        <span>☼</span> Daily guidance
+      </a>
+
+      <a class="nav-link" href="#assistant">
+        <span>✧</span> Ask BreatheWise
+      </a>
+
+      <a class="nav-link" href="#eco-tracker">
+        <span>♧</span> Eco tracker
+      </a>
+
+    </nav>
+
+    <div class="sidebar-note">
+      <span class="note-icon">🌱</span>
+      <strong>Small choices matter</strong>
+      <p>
+        Simple daily actions can help reduce pollution
+        and protect the air we share.
+      </p>
+    </div>
+
+    <div class="sidebar-bottom">
+      <span class="status-dot"></span>
+      Prototype · Demo data
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+
+  <main class="main-content" id="overview">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <button class="menu-button" id="menuButton" aria-label="Toggle navigation">
+        ☰
+      </button>
+
+      <div class="breadcrumb">
+        Workspace <span>/</span> <strong>Overview</strong>
+      </div>
+
+      <div class="topbar-right">
+        <span class="date-label" id="todayLabel"></span>
+        <div class="avatar">BW</div>
+      </div>
+
+    </header>
+
+
+    <!-- WELCOME SECTION -->
+
+    <section class="welcome-row">
+
+      <div>
+
+        <p class="eyebrow">
+          YOUR PERSONAL AIR QUALITY COMPANION
+        </p>
+
+        <h1>
+          Breathe better.<br>
+          <span>Live smarter.</span>
+        </h1>
+
+        <p class="welcome-copy">
+          Understand the air around you and discover
+          practical ways to care for your health
+          and the environment.
+        </p>
+
+      </div>
+
+      <div class="welcome-art" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="hill hill-back"></div>
+        <div class="hill hill-front"></div>
+        <div class="plant">♧</div>
+      </div>
+
+    </section>
+
+
+    <!-- LOCATION SEARCH -->
+
+    <section class="location-bar" aria-label="Location search">
+
+      <div class="location-icon">⌖</div>
+
+      <label for="cityInput">YOUR LOCATION</label>
+
+      <input
+        id="cityInput"
+        type="text"
+        value="Patna"
+        placeholder="Enter a city, e.g. Patna"
+      >
+
+      <button class="primary-button" id="searchButton">
+        Check air quality <span>→</span>
+      </button>
+
+    </section>
+
+    <p class="demo-notice" id="dataNotice">
+      Showing illustrative demo readings for Patna.
+      This prototype is not connected to a live AQI service.
+    </p>
+
+
+    <!-- AQI DASHBOARD -->
+
+    <section class="section-heading" id="air-quality">
+
+      <div>
+        <p class="eyebrow">AIR QUALITY SNAPSHOT</p>
+        <h2>Today's air overview</h2>
+      </div>
+
+      <span class="updated-pill">
+        <span class="status-dot"></span>
+        Demo snapshot
+      </span>
+
+    </section>
+
+
+    <section class="dashboard-grid">
+
+      <!-- AQI CARD -->
+
+      <article class="card aqi-card">
+
+        <div class="card-top">
+
+          <div>
+            <p class="card-label">AIR QUALITY INDEX</p>
+            <h3 id="cityTitle">Patna</h3>
+          </div>
+
+          <span class="icon-bubble">◉</span>
+
+        </div>
+
+        <div class="aqi-content">
+
+          <div class="aqi-number" id="aqiValue">
+            156
+          </div>
+
+          <div>
+            <span class="aqi-status" id="aqiStatus">
+              Unhealthy
+            </span>
+
+            <p class="aqi-description" id="aqiDescription">
+              Sensitive groups should take extra care.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="meter">
+          <span id="aqiMeter"></span>
+        </div>
+
+        <div class="meter-labels">
+          <span>Good</span>
+          <span>Moderate</span>
+          <span>Poor</span>
+          <span>Very poor</span>
+        </div>
+
+      </article>
+
+
+      <!-- POLLUTANT CARD -->
+
+      <article class="card pollutant-card">
+
+        <div class="card-top">
+
+          <div>
+            <p class="card-label">POLLUTANT DETAILS</p>
+            <h3>What is in the air?</h3>
+          </div>
+
+          <span class="icon-bubble green">⌁</span>
+
+        </div>
+
+        <div class="pollutant-list">
+
+          <div class="pollutant-row">
+            <div>
+              <strong>PM2.5</strong>
+              <small>Fine particles</small>
+            </div>
+            <b id="pm25Value">62 µg/m³</b>
+          </div>
+
+          <div class="pollutant-row">
+            <div>
+              <strong>PM10</strong>
+              <small>Coarse particles</small>
+            </div>
+            <b id="pm10Value">104 µg/m³</b>
+          </div>
+
+          <div class="pollutant-row">
+            <div>
+              <strong>NO₂</strong>
+              <small>Nitrogen dioxide</small>
+            </div>
+            <b id="no2Value">31 µg/m³</b>
+          </div>
+
+        </div>
+
+        <p class="tiny-note">
+          Illustrative values for interface demonstration only.
+        </p>
+
+      </article>
+
+    </section>
+
+
+    <!-- 7-DAY FORECAST -->
+
+    <section class="section-heading compact-heading" id="forecast">
+
+      <div>
+        <p class="eyebrow">LOOK AHEAD</p>
+        <h2>7-Day Air Quality Forecast</h2>
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <p>
+        Explore the upcoming air quality outlook for your city.
+      </p>
+
+      <div class="forecast-grid" id="forecastGrid">
+        <!-- Forecast cards generated by JavaScript -->
+      </div>
+
+      <p class="tiny-note">
+        Illustrative forecast for demonstration only,
+        not live predictions.
+      </p>
+
+    </section>
+
+
+    <!-- CITY COMPARISON -->
+
+    <section class="section-heading compact-heading" id="city-comparison">
+
+      <div>
+        <p class="eyebrow">COMPARE YOUR ENVIRONMENT</p>
+        <h2>City Air Quality Comparison</h2>
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <p>
+        Select two cities to compare their demo AQI readings.
+      </p>
+
+      <div class="comparison-controls">
+
+        <select id="cityOne" aria-label="Select first city">
+
+          <option value="patna">Patna</option>
+          <option value="delhi">Delhi</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="bengaluru">Bengaluru</option>
+          <option value="kolkata">Kolkata</option>
+
+        </select>
+
+        <select id="cityTwo" aria-label="Select second city">
+
+          <option value="delhi">Delhi</option>
+          <option value="patna">Patna</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="bengaluru">Bengaluru</option>
+          <option value="kolkata">Kolkata</option>
+
+        </select>
+
+        <button class="primary-button" id="compareButton">
+          Compare →
+        </button>
+
+      </div>
+
+      <div id="comparisonResult" aria-live="polite"></div>
+
+      <p class="tiny-note">
+        Demo readings only. These are not live measurements.
+      </p>
+
+    </section>
+
+
+    <!-- HEALTH AND SAFETY GUIDE -->
+
+    <section class="section-heading compact-heading" id="health-guide">
+
+      <div>
+        <p class="eyebrow">BREATHE SMARTER</p>
+        <h2>Pollution Health & Safety Guide</h2>
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <p>
+        Simple ways to stay aware of changing air quality.
+      </p>
+
+      <div class="health-grid">
+
+        <div class="health-card">
+          <span>🌱</span>
+          <h3>Good Air Quality</h3>
+          <p>
+            Enjoy normal outdoor activities while staying
+            aware of local conditions.
+          </p>
+        </div>
+
+        <div class="health-card">
+          <span>🌤️</span>
+          <h3>Moderate Air Quality</h3>
+          <p>
+            Most people can continue usual activities.
+            Sensitive individuals should pay attention to symptoms.
+          </p>
+        </div>
+
+        <div class="health-card">
+          <span>😷</span>
+          <h3>Poor Air Quality</h3>
+          <p>
+            Consider reducing prolonged outdoor exertion,
+            especially if you are sensitive to pollution.
+          </p>
+        </div>
+
+        <div class="health-card">
+          <span>🏠</span>
+          <h3>Indoor Protection</h3>
+          <p>
+            Keep indoor spaces clean, avoid smoke indoors
+            and use suitable air filtration when available.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DATA SOURCES -->
+
+    <section class="section-heading compact-heading" id="data-sources">
+
+      <div>
+        <p class="eyebrow">TRUST & TRANSPARENCY</p>
+        <h2>About Our Data</h2>
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <h3>Understanding BreatheWise Readings</h3>
+
+      <p>
+        The current dashboard, city comparison and forecast
+        use illustrative sample data for demonstration.
+      </p>
+
+      <p>
+        These values are not official CPCB measurements
+        or actual air-quality forecasts.
+      </p>
+
+      <p>
+        BreatheWise aims to help people understand air pollution
+        and make informed everyday decisions.
+      </p>
+
+    </section>
+
+
+    <!-- DAILY GUIDANCE -->
+
+    <section class="section-heading compact-heading" id="daily-tips">
+
+      <div>
+        <p class="eyebrow">MADE FOR YOUR DAY</p>
+        <h2>What you can do today</h2>
+      </div>
+
+      <span class="soft-label">Practical suggestions</span>
+
+    </section>
+
+    <section class="tips-grid">
+
+      <article class="tip-card">
+
+        <span class="tip-icon lavender">⌂</span>
+
+        <div>
+          <h3>Keep indoor air cleaner</h3>
+          <p>
+            Reduce indoor smoke and dust.
+            Ventilate when outdoor air is cleaner.
+          </p>
+        </div>
+
+        <span class="tip-number">01</span>
+
+      </article>
+
+
+      <article class="tip-card">
+
+        <span class="tip-icon peach">◷</span>
+
+        <div>
+          <h3>Plan outdoor activity</h3>
+          <p>
+            Check a reliable local AQI update before
+            strenuous outdoor activity.
+          </p>
+        </div>
+
+        <span class="tip-number">02</span>
+
+      </article>
+
+
+      <article class="tip-card">
+
+        <span class="tip-icon mint">↗</span>
+
+        <div>
+          <h3>Choose cleaner travel</h3>
+          <p>
+            When practical, combine trips or use public
+            transport to reduce vehicle emissions.
+          </p>
+        </div>
+
+        <span class="tip-number">03</span>
+
+      </article>
+
+    </section>
+
+
+    <!-- CHATBOT AND ECO TRACKER -->
+
+    <section class="bottom-grid">
+
+
+      <!-- AI ASSISTANT -->
+
+      <article class="card assistant-card" id="assistant">
+
+        <div class="assistant-heading">
+
+          <div class="assistant-symbol">✧</div>
+
+          <div>
+            <p class="card-label">YOUR AIR QUALITY GUIDE</p>
+            <h2>Ask BreatheWise</h2>
+          </div>
+
+          <span class="beta-tag">AI ASSISTANT</span>
+
+        </div>
+
+        <p class="assistant-intro">
+          Ask BreatheWise about AQI, air pollution,
+          PM2.5, PM10, and practical ways to improve
+          your daily air-quality awareness.
+        </p>
+
+        <div class="chat-window" id="chatWindow" aria-live="polite">
+
+          <div class="chat-message bot-message">
+            Hi! I'm BreatheWise. Ask me for a simple
+            air-quality tip. Remember, I don't have
+            live pollution data yet.
+          </div>
+
+        </div>
+
+        <form class="chat-form" id="chatForm">
+
+          <label class="sr-only" for="chatInput">
+            Your question
+          </label>
+
+          <input
+            id="chatInput"
+            type="text"
+            placeholder="e.g. How can I reduce indoor dust?"
+            required
+          >
+
+          <button aria-label="Send message">↑</button>
+
+        </form>
+
+        <div class="quick-prompts">
+
+          <button
+            class="prompt-chip"
+            data-question="How can I reduce indoor dust?"
+          >
+            Indoor dust
+          </button>
+
+          <button
+            class="prompt-chip"
+            data-question="How can I travel more sustainably?"
+          >
+            Cleaner travel
+          </button>
+
+          <button
+            class="prompt-chip"
+            data-question="What should I check before going outside?"
+          >
+            Before going out
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- ECO TRACKER -->
+
+      <article class="card tracker-card" id="eco-tracker">
+
+        <div class="card-top">
+
+          <div>
+            <p class="card-label">YOUR SMALL STEPS</p>
+            <h2>Daily eco tracker</h2>
+          </div>
+
+          <span class="icon-bubble green">♧</span>
+
+        </div>
+
+        <p class="tracker-copy">
+          Tick the habits you completed today.
+          Your score is a simple participation score,
+          not a measured carbon saving.
+        </p>
+
+        <div class="habit-list">
+
+          <label class="habit">
+            <input type="checkbox" class="habit-check">
+            <span class="custom-check"></span>
+            <span>Used public transport or shared a ride</span>
+          </label>
+
+          <label class="habit">
+            <input type="checkbox" class="habit-check">
+            <span class="custom-check"></span>
+            <span>Avoided unnecessary vehicle trips</span>
+          </label>
+
+          <label class="habit">
+            <input type="checkbox" class="habit-check">
+            <span class="custom-check"></span>
+            <span>Reduced indoor smoke or dust</span>
+          </label>
+
+          <label class="habit">
+            <input type="checkbox" class="habit-check">
+            <span class="custom-check"></span>
+            <span>Saved electricity where possible</span>
+          </label>
+
+        </div>
+
+        <div class="score-row">
+
+          <div>
+            <small>TODAY'S HABIT SCORE</small>
+
+            <strong>
+              <span id="habitScore">0</span>
+              <small>/ 4 completed</small>
+            </strong>
+          </div>
+
+          <div class="score-ring" id="scoreRing">
+            <span id="scorePercent">0%</span>
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+      <span>✦ BreatheWise AI</span>
+
+      <span>
+        Prototype · Demo data only · Not medical advice
+      </span>
+
+    </footer>
+
+  </main>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
