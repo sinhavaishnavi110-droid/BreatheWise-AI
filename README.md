@@ -83,4 +83,5 @@ Note: Air-quality values are model-based estimates and may differ from official 
 ## 9. Project Goal
 Our goal is to make air-quality information understandable, accessible and useful for everyone.
 
+ 
 **BreatheWise AI – Understand the Air. Make Better Choices.**
