@@ -2,11 +2,6 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename =  fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -19,19 +14,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// CORS configuration
+// Allow both local development and live Vercel URLs
 app.use(cors({
-  origin: "*"
+  origin: true
 }));
 
 app.use(express.json({ limit: "10kb" }));
 
-// Serve static frontend files from the public folder
-app.use(express.static(path.join(__dirname, "public")));
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 // Gemini AI configuration
 const apiKey = process.env.GEMINI_API_KEY;
 const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
@@ -57,15 +46,13 @@ app.post("/api/chat", async (req, res) => {
     });
   }
 
-  if (!ai) {
-    return res.status(503).json({
-      error: "AI API key is not configured."
-    });
-  }
-
   try {
+    if (!ai) {
+      throw new Error("AI API key not configured");
+    }
+
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-2.5-flash",
       contents: `
 You are BreatheWise AI, an urban air quality assistant.
 
@@ -83,7 +70,7 @@ User question: ${message}
     });
 
   } catch (error) {
-    console.log("Gemini unavailable. Using backup assistant.");
+    console.log("Gemini unavailable. Using backup assistant:", error.message);
 
     const question = message.toLowerCase();
 
@@ -112,11 +99,12 @@ User question: ${message}
   }
 });
 
-// Start server
+// Start server locally only
 if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`BreatheWise backend running on port ${PORT}`);
   });
 }
 
+// Required for Vercel
 export default app;
